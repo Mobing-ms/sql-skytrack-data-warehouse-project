@@ -23,7 +23,7 @@ Integrates processed data into fact and dimension tables, applies business rules
 * Airports
 * Employees
 
-### Operational Data
+### Service Data
 
 * Flights
 * Passengers
