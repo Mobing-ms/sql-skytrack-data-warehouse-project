@@ -1,38 +1,22 @@
 # ✈️ SkyTrack Data Warehouse
 
-## Overview
+A modern Data Engineering project that implements a layered Data Warehouse architecture using airline data. The project demonstrates the complete data lifecycle, from raw data ingestion to business-ready analytics.
 
-SkyTrack Data Warehouse is an end-to-end Data Engineering project built using airline data. The project follows a layered architecture to ingest, process, and analyze data while demonstrating core data warehousing concepts such as ETL, data quality management, dimensional modeling, and analytics.
+## 🏗️ Architecture
 
----
+### 🥉 Acquisition Layer
 
-## Architecture
+Stores raw data from source systems without modifications.
 
-The project is organized into three layers:
+### 🥈 Processing Layer
 
-### 1. Acquisition Layer (Bronze)
+Performs data cleansing, standardization, validation, enrichment, and transformation.
 
-* Ingests raw source data from CSV files.
-* Preserves data in its original format.
-* Supports batch processing and full data loads.
+### 🥇 Analytics Layer
 
-### 2. Processing Layer (Silver)
+Integrates processed data into fact and dimension tables, applies business rules, and supports reporting and analytics.
 
-* Performs data cleansing and validation.
-* Standardizes formats and values.
-* Applies data normalization and enrichment.
-* Creates derived attributes for analytics.
-
-### 3. Analytics Layer (Gold)
-
-* Integrates processed datasets.
-* Applies business rules and KPI calculations.
-* Implements dimensional modeling using fact and dimension tables.
-* Supports reporting, analytics, and business intelligence.
-
----
-
-## Source Data
+## 📂 Source Data
 
 ### Master Data
 
@@ -45,19 +29,7 @@ The project is organized into three layers:
 * Passengers
 * Tickets
 
----
-
-## Project Objectives
-
-* Build a modern data warehouse using airline data.
-* Demonstrate ETL pipeline design and implementation.
-* Apply data transformation and quality practices.
-* Design a scalable analytics layer using star schema principles.
-* Enable reporting and analytical workloads.
-
----
-
-## Data Flow
+## 🔄 Data Flow
 
 ```text
 Source Systems
@@ -68,35 +40,24 @@ Processing Layer
       ↓
 Analytics Layer
       ↓
-Power BI / SQL Analytics / Machine Learning
+Power BI / SQL Analytics / ML
 ```
 
----
+## 🎯 Key Features
 
-## Key Concepts Demonstrated
+* ETL Pipeline Design
+* Data Quality Management
+* Data Transformation
+* Dimensional Modeling
+* Star Schema Architecture
+* Business Intelligence Ready
 
-* Data Warehousing
-* ETL / ELT Pipelines
-* Data Modeling
-* Data Cleansing
-* Data Standardization
-* Data Integration
-* Star Schema Design
-* Business Intelligence
 
----
+## 📜 License
 
-## Future Enhancements
+This project is licensed under the MIT License.
 
-* Incremental data loading
-* Automated orchestration workflows
-* Real-time data ingestion
-* Advanced analytics dashboards
-* Data quality monitoring
 
----
+## 👨‍💻 Author
 
-## Author
-
-Akshay M Nair
-
+**Akshay M Nair**
