@@ -1,0 +1,289 @@
+/*
+===============================================================================
+Project      : SkyTrack Airlines Data Warehouse
+Layer        : Processing Layer (Silver)
+Author       : Akshay M Nair
+Description  : Loads cleansed and transformed data from the Acquisition Layer
+               into the Processing Layer.
+
+Transformations Applied:
+    - Duplicate removal using ROW_NUMBER()
+    - Airport ID standardization (base_airport_id → AP0001 format)
+    - String trimming (first_name, last_name)
+    - Email standardization (LOWER)
+    - Date type conversions
+    - Travel time calculation (minutes and hours)
+    - Passenger age calculation
+    - Passenger age group classification
+    - Employee years of service calculation
+
+Source Tables:
+    acquisition.mast_airports_raw
+    acquisition.mast_employees_raw
+    acquisition.mast_flights_raw
+    acquisition.serv_passengers_raw
+    acquisition.serv_tickets_raw
+
+Target Tables:
+    processing.mast_airports
+    processing.mast_employees
+    processing.mast_flights
+    processing.serv_passengers
+    processing.serv_tickets
+===============================================================================
+*/
+
+USE SkyTrack_DWH;
+GO
+
+TRUNCATE TABLE processing.mast_airports;
+
+WITH cte_airports AS
+(
+    SELECT *,
+           ROW_NUMBER() OVER
+           (
+               PARTITION BY airport_id
+               ORDER BY airport_id
+           ) AS rn
+    FROM acquisition.mast_airports_raw
+)
+INSERT INTO processing.mast_airports
+(
+    airport_id,
+    iata_code,
+    airport_name,
+    city,
+    country,
+    timezone
+)
+SELECT
+    airport_id,
+    iata_code,
+    airport_name,
+    city,
+    country,
+    timezone
+FROM cte_airports
+WHERE rn = 1;
+
+
+TRUNCATE TABLE processing.mast_employees;
+
+WITH cte_employees AS
+(
+    SELECT *,
+           ROW_NUMBER() OVER
+           (
+               PARTITION BY employee_id
+               ORDER BY employee_id
+           ) AS rn
+    FROM acquisition.mast_employees_raw
+)
+INSERT INTO processing.mast_employees
+(
+    employee_id,
+    first_name,
+    last_name,
+    role,
+    base_airport_id,
+    hire_date,
+    email,
+    years_of_service
+)
+SELECT
+    employee_id,
+    TRIM(first_name),
+    TRIM(last_name),
+    roles,
+    'AP' + RIGHT('0000' + CAST(base_airport_id AS VARCHAR),4),
+    CAST(hire_date AS DATE),
+    LOWER(email),
+    DATEDIFF
+    (
+        YEAR,
+        CAST(hire_date AS DATE),
+        GETDATE()
+    ) AS years_of_service
+FROM cte_employees
+WHERE rn = 1;
+
+
+TRUNCATE TABLE processing.mast_flights;
+
+WITH cte_flights AS
+(
+    SELECT *,
+           ROW_NUMBER() OVER
+           (
+               PARTITION BY flight_id
+               ORDER BY flight_id
+           ) AS rn
+    FROM acquisition.mast_flights_raw
+)
+INSERT INTO processing.mast_flights
+(
+    flight_id,
+    airline_code,
+    flight_no,
+    origin_airport_id,
+    destination_airport_id,
+    departure_time,
+    arrival_time,
+    aircraft_type,
+    status,
+    pilot_id,
+    co_pilot_id,
+    travel_time_minutes,
+    travel_time_hours,
+    departure_date,
+    departure_year,
+    departure_month
+)
+SELECT
+    flight_id,
+    airline_code,
+    flight_no,
+    origin_airport_id,
+    destination_airport_id,
+    CAST(departure_time AS DATETIME2),
+    CAST(arrival_time AS DATETIME2),
+    aircraft_type,
+    status,
+    pilot_id,
+    co_pilot_id,
+    DATEDIFF
+    (
+        MINUTE,
+        CAST(departure_time AS DATETIME2),
+        CAST(arrival_time AS DATETIME2)
+    ) AS travel_time_minutes,
+
+    CAST
+    (
+        DATEDIFF
+        (
+            MINUTE,
+            CAST(departure_time AS DATETIME2),
+            CAST(arrival_time AS DATETIME2)
+        ) / 60.0
+        AS DECIMAL(10,2)
+    ) AS travel_time_hours,
+    CAST(departure_time AS DATE) AS departure_date,
+    YEAR(CAST(departure_time AS DATETIME2)) AS departure_year,
+    MONTH(CAST(departure_time AS DATETIME2)) AS departure_month
+
+FROM cte_flights
+WHERE rn = 1;
+
+
+TRUNCATE TABLE processing.serv_passengers;
+
+WITH cte_passengers AS
+(
+    SELECT *,
+           ROW_NUMBER() OVER
+           (
+               PARTITION BY passenger_id
+               ORDER BY passenger_id
+           ) AS rn
+    FROM acquisition.serv_passengers_raw
+)
+INSERT INTO processing.serv_passengers
+(
+    passenger_id,
+    first_name,
+    last_name,
+    gender,
+    dob,
+    email,
+    phone,
+    nationality,
+    age,
+    age_group
+)
+SELECT
+    passenger_id,
+    TRIM(first_name),
+    TRIM(last_name),
+    gender,
+    CAST(dob AS DATE),
+    LOWER(email),
+    phone,
+    nationality,
+
+    DATEDIFF
+    (
+        YEAR,
+        CAST(dob AS DATE),
+        GETDATE()
+    ) AS age,
+
+    CASE
+        WHEN DATEDIFF
+        (
+            YEAR,
+            CAST(dob AS DATE),
+            GETDATE()
+        ) < 18
+        THEN 'Child'
+
+        WHEN DATEDIFF
+        (
+            YEAR,
+            CAST(dob AS DATE),
+            GETDATE()
+        ) BETWEEN 18 AND 30
+        THEN 'Young Adult'
+
+        WHEN DATEDIFF
+        (
+            YEAR,
+            CAST(dob AS DATE),
+            GETDATE()
+        ) BETWEEN 31 AND 50
+        THEN 'Adult'
+
+        ELSE 'Senior'
+    END AS age_group
+
+FROM cte_passengers
+WHERE rn = 1;
+
+
+TRUNCATE TABLE processing.serv_tickets;
+
+WITH cte_tickets AS
+(
+    SELECT *,
+           ROW_NUMBER() OVER
+           (
+               PARTITION BY ticket_id
+               ORDER BY ticket_id
+           ) AS rn
+    FROM acquisition.serv_tickets_raw
+)
+INSERT INTO processing.serv_tickets
+(
+    ticket_id,
+    ticket_no,
+    passenger_id,
+    flight_id,
+    seat,
+    class,
+    price_usd,
+    booking_date,
+    status
+)
+SELECT
+    ticket_id,
+    ticket_no,
+    passenger_id,
+    flight_id,
+    seat,
+    class,
+    price_usd,
+    CAST(booking_date AS DATE),
+    status
+FROM cte_tickets
+WHERE rn = 1;
