@@ -36,6 +36,9 @@ Target Tables:
 USE SkyTrack_DWH;
 GO
 
+
+CREATE AND ALTER PROCEDURE processing.load_processing
+BEGIN
 TRUNCATE TABLE processing.mast_airports;
 
 WITH cte_airports AS
@@ -287,3 +290,4 @@ SELECT
     status
 FROM cte_tickets
 WHERE rn = 1;
+END
