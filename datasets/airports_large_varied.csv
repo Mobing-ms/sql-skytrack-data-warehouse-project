@@ -1,0 +1,151 @@
+airport_id,iata_code,airport_name,city,country,timezone
+AP0001,AAA,John F. Kennedy International Airport,Bangkok,Thailand,Asia/Bangkok
+AP0002,ABD,Los Angeles International Airport,Bangkok,Thailand,Asia/Bangkok
+AP0003,ACG,O'Hare International Airport,Tokyo,Japan,Asia/Tokyo
+AP0004,ADJ,Heathrow Airport,Narita,Japan,Asia/Tokyo
+AP0005,AEM,Gatwick Airport,Singapore,Singapore,Asia/Singapore
+AP0006,AFP,Haneda Airport,Los Angeles,United States,America/Los_Angeles
+AP0007,AGS,Narita International Airport,Sydney,Australia,Australia/Sydney
+AP0008,AHV,Singapore Changi Airport,Paris,France,Europe/Paris
+AP0009,AIY,Suvarnabhumi Airport,Frankfurt,Germany,Europe/Berlin
+AP0010,AJB,Dubai International Airport,Dubai,United Arab Emirates,Asia/Dubai
+AP0011,AKE,Frankfurt Airport,New York,United States,America/New_York
+AP0012,ALH,Charles de Gaulle Airport,Chicago,United States,America/Chicago
+AP0013,AMK,Amsterdam Schiphol Airport,Incheon,South Korea,Asia/Seoul
+AP0014,ANN,Sydney Airport,Sepang,Malaysia,Asia/Kuala_Lumpur
+AP0015,AOQ,Melbourne Airport,Hong Kong,Hong Kong,Asia/Hong_Kong
+AP0016,APT,Indira Gandhi International Airport,Bangkok,Thailand,Asia/Bangkok
+AP0017,AQW,John F. Kennedy International Airport,Bangkok,Thailand,Asia/Bangkok
+AP0018,ARZ,Los Angeles International Airport,Tokyo,Japan,Asia/Tokyo
+AP0019,ASC,O'Hare International Airport,Narita,Japan,Asia/Tokyo
+AP0020,ATF,Heathrow Airport,Singapore,Singapore,Asia/Singapore
+AP0021,AUI,Gatwick Airport,Los Angeles,United States,America/Los_Angeles
+AP0022,AVL,Haneda Airport,Sydney,Australia,Australia/Sydney
+AP0023,AWO,Narita International Airport,Paris,France,Europe/Paris
+AP0024,AXR,Singapore Changi Airport,Frankfurt,Germany,Europe/Berlin
+AP0025,AYU,Suvarnabhumi Airport,Dubai,United Arab Emirates,Asia/Dubai
+AP0026,AZX,Dubai International Airport,New York,United States,America/New_York
+AP0027,BAA,Frankfurt Airport,Chicago,United States,America/Chicago
+AP0028,BBD,Charles de Gaulle Airport,Incheon,South Korea,Asia/Seoul
+AP0029,BCG,Amsterdam Schiphol Airport,Sepang,Malaysia,Asia/Kuala_Lumpur
+AP0030,BDJ,Sydney Airport,Hong Kong,Hong Kong,Asia/Hong_Kong
+AP0031,BEM,Melbourne Airport,Bangkok,Thailand,Asia/Bangkok
+AP0032,BFP,Indira Gandhi International Airport,Bangkok,Thailand,Asia/Bangkok
+AP0033,BGS,John F. Kennedy International Airport,Tokyo,Japan,Asia/Tokyo
+AP0034,BHV,Los Angeles International Airport,Narita,Japan,Asia/Tokyo
+AP0035,BIY,O'Hare International Airport,Singapore,Singapore,Asia/Singapore
+AP0036,BJB,Heathrow Airport,Los Angeles,United States,America/Los_Angeles
+AP0037,BKE,Gatwick Airport,Sydney,Australia,Australia/Sydney
+AP0038,BLH,Haneda Airport,Paris,France,Europe/Paris
+AP0039,BMK,Narita International Airport,Frankfurt,Germany,Europe/Berlin
+AP0040,BNN,Singapore Changi Airport,Dubai,United Arab Emirates,Asia/Dubai
+AP0041,BOQ,Suvarnabhumi Airport,New York,United States,America/New_York
+AP0042,BPT,Dubai International Airport,Chicago,United States,America/Chicago
+AP0043,BQW,Frankfurt Airport,Incheon,South Korea,Asia/Seoul
+AP0044,BRZ,Charles de Gaulle Airport,Sepang,Malaysia,Asia/Kuala_Lumpur
+AP0045,BSC,Amsterdam Schiphol Airport,Hong Kong,Hong Kong,Asia/Hong_Kong
+AP0046,BTF,Sydney Airport,Bangkok,Thailand,Asia/Bangkok
+AP0047,BUI,Melbourne Airport,Bangkok,Thailand,Asia/Bangkok
+AP0048,BVL,Indira Gandhi International Airport,Tokyo,Japan,Asia/Tokyo
+AP0049,BWO,John F. Kennedy International Airport,Narita,Japan,Asia/Tokyo
+AP0050,BXR,Los Angeles International Airport,Singapore,Singapore,Asia/Singapore
+AP0051,BYU,O'Hare International Airport,Los Angeles,United States,America/Los_Angeles
+AP0052,BZX,Heathrow Airport,Sydney,Australia,Australia/Sydney
+AP0053,CAA,Gatwick Airport,Paris,France,Europe/Paris
+AP0054,CBD,Haneda Airport,Frankfurt,Germany,Europe/Berlin
+AP0055,CCG,Narita International Airport,Dubai,United Arab Emirates,Asia/Dubai
+AP0056,CDJ,Singapore Changi Airport,New York,United States,America/New_York
+AP0057,CEM,Suvarnabhumi Airport,Chicago,United States,America/Chicago
+AP0058,CFP,Dubai International Airport,Incheon,South Korea,Asia/Seoul
+AP0059,CGS,Frankfurt Airport,Sepang,Malaysia,Asia/Kuala_Lumpur
+AP0060,CHV,Charles de Gaulle Airport,Hong Kong,Hong Kong,Asia/Hong_Kong
+AP0061,CIY,Amsterdam Schiphol Airport,Bangkok,Thailand,Asia/Bangkok
+AP0062,CJB,Sydney Airport,Bangkok,Thailand,Asia/Bangkok
+AP0063,CKE,Melbourne Airport,Tokyo,Japan,Asia/Tokyo
+AP0064,CLH,Indira Gandhi International Airport,Narita,Japan,Asia/Tokyo
+AP0065,CMK,John F. Kennedy International Airport,Singapore,Singapore,Asia/Singapore
+AP0066,CNN,Los Angeles International Airport,Los Angeles,United States,America/Los_Angeles
+AP0067,COQ,O'Hare International Airport,Sydney,Australia,Australia/Sydney
+AP0068,CPT,Heathrow Airport,Paris,France,Europe/Paris
+AP0069,CQW,Gatwick Airport,Frankfurt,Germany,Europe/Berlin
+AP0070,CRZ,Haneda Airport,Dubai,United Arab Emirates,Asia/Dubai
+AP0071,CSC,Narita International Airport,New York,United States,America/New_York
+AP0072,CTF,Singapore Changi Airport,Chicago,United States,America/Chicago
+AP0073,CUI,Suvarnabhumi Airport,Incheon,South Korea,Asia/Seoul
+AP0074,CVL,Dubai International Airport,Sepang,Malaysia,Asia/Kuala_Lumpur
+AP0075,CWO,Frankfurt Airport,Hong Kong,Hong Kong,Asia/Hong_Kong
+AP0076,CXR,Charles de Gaulle Airport,Bangkok,Thailand,Asia/Bangkok
+AP0077,CYU,Amsterdam Schiphol Airport,Bangkok,Thailand,Asia/Bangkok
+AP0078,CZX,Sydney Airport,Tokyo,Japan,Asia/Tokyo
+AP0079,DAA,Melbourne Airport,Narita,Japan,Asia/Tokyo
+AP0080,DBD,Indira Gandhi International Airport,Singapore,Singapore,Asia/Singapore
+AP0081,DCG,John F. Kennedy International Airport,Los Angeles,United States,America/Los_Angeles
+AP0082,DDJ,Los Angeles International Airport,Sydney,Australia,Australia/Sydney
+AP0083,DEM,O'Hare International Airport,Paris,France,Europe/Paris
+AP0084,DFP,Heathrow Airport,Frankfurt,Germany,Europe/Berlin
+AP0085,DGS,Gatwick Airport,Dubai,United Arab Emirates,Asia/Dubai
+AP0086,DHV,Haneda Airport,New York,United States,America/New_York
+AP0087,DIY,Narita International Airport,Chicago,United States,America/Chicago
+AP0088,DJB,Singapore Changi Airport,Incheon,South Korea,Asia/Seoul
+AP0089,DKE,Suvarnabhumi Airport,Sepang,Malaysia,Asia/Kuala_Lumpur
+AP0090,DLH,Dubai International Airport,Hong Kong,Hong Kong,Asia/Hong_Kong
+AP0091,DMK,Frankfurt Airport,Bangkok,Thailand,Asia/Bangkok
+AP0092,DNN,Charles de Gaulle Airport,Bangkok,Thailand,Asia/Bangkok
+AP0093,DOQ,Amsterdam Schiphol Airport,Tokyo,Japan,Asia/Tokyo
+AP0094,DPT,Sydney Airport,Narita,Japan,Asia/Tokyo
+AP0095,DQW,Melbourne Airport,Singapore,Singapore,Asia/Singapore
+AP0096,DRZ,Indira Gandhi International Airport,Los Angeles,United States,America/Los_Angeles
+AP0097,DSC,John F. Kennedy International Airport,Sydney,Australia,Australia/Sydney
+AP0098,DTF,Los Angeles International Airport,Paris,France,Europe/Paris
+AP0099,DUI,O'Hare International Airport,Frankfurt,Germany,Europe/Berlin
+AP0100,DVL,Heathrow Airport,Dubai,United Arab Emirates,Asia/Dubai
+AP0101,DWO,Gatwick Airport,New York,United States,America/New_York
+AP0102,DXR,Haneda Airport,Chicago,United States,America/Chicago
+AP0103,DYU,Narita International Airport,Incheon,South Korea,Asia/Seoul
+AP0104,DZX,Singapore Changi Airport,Sepang,Malaysia,Asia/Kuala_Lumpur
+AP0105,EAA,Suvarnabhumi Airport,Hong Kong,Hong Kong,Asia/Hong_Kong
+AP0106,EBD,Dubai International Airport,Bangkok,Thailand,Asia/Bangkok
+AP0107,ECG,Frankfurt Airport,Bangkok,Thailand,Asia/Bangkok
+AP0108,EDJ,Charles de Gaulle Airport,Tokyo,Japan,Asia/Tokyo
+AP0109,EEM,Amsterdam Schiphol Airport,Narita,Japan,Asia/Tokyo
+AP0110,EFP,Sydney Airport,Singapore,Singapore,Asia/Singapore
+AP0111,EGS,Melbourne Airport,Los Angeles,United States,America/Los_Angeles
+AP0112,EHV,Indira Gandhi International Airport,Sydney,Australia,Australia/Sydney
+AP0113,EIY,John F. Kennedy International Airport,Paris,France,Europe/Paris
+AP0114,EJB,Los Angeles International Airport,Frankfurt,Germany,Europe/Berlin
+AP0115,EKE,O'Hare International Airport,Dubai,United Arab Emirates,Asia/Dubai
+AP0116,ELH,Heathrow Airport,New York,United States,America/New_York
+AP0117,EMK,Gatwick Airport,Chicago,United States,America/Chicago
+AP0118,ENN,Haneda Airport,Incheon,South Korea,Asia/Seoul
+AP0119,EOQ,Narita International Airport,Sepang,Malaysia,Asia/Kuala_Lumpur
+AP0120,EPT,Singapore Changi Airport,Hong Kong,Hong Kong,Asia/Hong_Kong
+AP0121,EQW,Suvarnabhumi Airport,Bangkok,Thailand,Asia/Bangkok
+AP0122,ERZ,Dubai International Airport,Bangkok,Thailand,Asia/Bangkok
+AP0123,ESC,Frankfurt Airport,Tokyo,Japan,Asia/Tokyo
+AP0124,ETF,Charles de Gaulle Airport,Narita,Japan,Asia/Tokyo
+AP0125,EUI,Amsterdam Schiphol Airport,Singapore,Singapore,Asia/Singapore
+AP0126,EVL,Sydney Airport,Los Angeles,United States,America/Los_Angeles
+AP0127,EWO,Melbourne Airport,Sydney,Australia,Australia/Sydney
+AP0128,EXR,Indira Gandhi International Airport,Paris,France,Europe/Paris
+AP0129,EYU,John F. Kennedy International Airport,Frankfurt,Germany,Europe/Berlin
+AP0130,EZX,Los Angeles International Airport,Dubai,United Arab Emirates,Asia/Dubai
+AP0131,FAA,O'Hare International Airport,New York,United States,America/New_York
+AP0132,FBD,Heathrow Airport,Chicago,United States,America/Chicago
+AP0133,FCG,Gatwick Airport,Incheon,South Korea,Asia/Seoul
+AP0134,FDJ,Haneda Airport,Sepang,Malaysia,Asia/Kuala_Lumpur
+AP0135,FEM,Narita International Airport,Hong Kong,Hong Kong,Asia/Hong_Kong
+AP0136,FFP,Singapore Changi Airport,Bangkok,Thailand,Asia/Bangkok
+AP0137,FGS,Suvarnabhumi Airport,Bangkok,Thailand,Asia/Bangkok
+AP0138,FHV,Dubai International Airport,Tokyo,Japan,Asia/Tokyo
+AP0139,FIY,Frankfurt Airport,Narita,Japan,Asia/Tokyo
+AP0140,FJB,Charles de Gaulle Airport,Singapore,Singapore,Asia/Singapore
+AP0141,FKE,Amsterdam Schiphol Airport,Los Angeles,United States,America/Los_Angeles
+AP0142,FLH,Sydney Airport,Sydney,Australia,Australia/Sydney
+AP0143,FMK,Melbourne Airport,Paris,France,Europe/Paris
+AP0144,FNN,Indira Gandhi International Airport,Frankfurt,Germany,Europe/Berlin
+AP0145,FOQ,John F. Kennedy International Airport,Dubai,United Arab Emirates,Asia/Dubai
+AP0146,FPT,Los Angeles International Airport,New York,United States,America/New_York
+AP0147,FQW,O'Hare International Airport,Chicago,United States,America/Chicago
+AP0148,FRZ,Heathrow Airport,Incheon,South Korea,Asia/Seoul
+AP0149,FSC,Gatwick Airport,Sepang,Malaysia,Asia/Kuala_Lumpur
+AP0150,FTF,Haneda Airport,Hong Kong,Hong Kong,Asia/Hong_Kong
