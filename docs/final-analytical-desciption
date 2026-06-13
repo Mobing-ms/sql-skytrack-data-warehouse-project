@@ -1,0 +1,116 @@
+# SkyTrack Data Warehouse - Analytics Layer Data Dictionary
+
+This document describes the Analytics Layer views used for reporting and dashboarding in the SkyTrack Data Warehouse project. The purpose of these views is to provide business-friendly datasets for analytics, KPI tracking, and Power BI reporting.
+
+---
+
+# dim_passengers
+
+**Purpose:** Stores passenger demographic information, contact details, travel history metrics, and loyalty segmentation used for customer analytics.
+
+| Column Name    | Data Type | Description                                                                              |
+| -------------- | --------- | ---------------------------------------------------------------------------------------- |
+| passenger_id   | INT       | Unique identifier for each passenger.                                                    |
+| first_name     | VARCHAR   | Passenger's first name.                                                                  |
+| last_name      | VARCHAR   | Passenger's last name.                                                                   |
+| gender         | VARCHAR   | Passenger's gender.                                                                      |
+| date_of_birth  | DATE      | Passenger's date of birth.                                                               |
+| nationality    | VARCHAR   | Passenger's nationality.                                                                 |
+| loyalty_status | VARCHAR   | Loyalty tier assigned based on total tickets purchased (Bronze, Silver, Gold, Platinum). |
+| email          | VARCHAR   | Passenger's email address.                                                               |
+| phone_number   | VARCHAR   | Passenger's contact number.                                                              |
+| total_tickets  | INT       | Total number of tickets purchased by the passenger.                                      |
+
+---
+
+# dim_employees
+
+**Purpose:** Stores employee information used for workforce analysis, staffing insights, and employee segmentation based on years of service.
+
+| Column Name     | Data Type | Description                                                               |
+| --------------- | --------- | ------------------------------------------------------------------------- |
+| employee_id     | INT       | Unique identifier for each employee.                                      |
+| first_name      | VARCHAR   | Employee's first name.                                                    |
+| last_name       | VARCHAR   | Employee's last name.                                                     |
+| role            | VARCHAR   | Employee job role (Pilot, Cabin Crew, Ground Staff, etc.).                |
+| base_airport_id | INT       | Airport where the employee is assigned.                                   |
+| hire_date       | DATE      | Employee joining date.                                                    |
+| email           | VARCHAR   | Employee email address.                                                   |
+| employee_status | VARCHAR   | Employee tier based on years of service (Bronze, Silver, Gold, Platinum). |
+
+---
+
+# fact_booking
+
+**Purpose:** Captures ticket booking transactions and booking behavior metrics. This view supports passenger analytics, booking trends, customer segmentation, and loyalty analysis.
+
+| Column Name           | Data Type | Description                                                                          |
+| --------------------- | --------- | ------------------------------------------------------------------------------------ |
+| ticket_id             | INT       | Unique identifier for each ticket booking.                                           |
+| passenger_id          | INT       | Passenger associated with the booking.                                               |
+| flight_id             | INT       | Flight associated with the booking.                                                  |
+| booking_date          | DATE      | Date on which the booking was made.                                                  |
+| class                 | VARCHAR   | Travel class selected by the passenger (Economy, Premium Economy, Business, First).  |
+| price_usd             | DECIMAL   | Ticket price in USD.                                                                 |
+| booking_segment       | VARCHAR   | Customer spending category (Budget, Standard, Premium).                              |
+| loyalty_points_earned | DECIMAL   | Loyalty points awarded based on ticket class and ticket value.                       |
+| booking_lead_days     | INT       | Number of days between booking date and flight departure date.                       |
+| booking_type          | VARCHAR   | Booking category based on lead time (Advance Booking, Regular Booking, Last Minute). |
+
+---
+
+# fact_flight
+
+**Purpose:** Provides operational flight information and performance metrics used for monitoring airline operations, flight utilization, and route analysis.
+
+| Column Name            | Data Type | Description                                                             |
+| ---------------------- | --------- | ----------------------------------------------------------------------- |
+| flight_id              | INT       | Unique identifier for each flight.                                      |
+| flight_no              | VARCHAR   | Flight number assigned to the flight.                                   |
+| airline_code           | VARCHAR   | Airline operating the flight.                                           |
+| origin_airport_id      | INT       | Identifier of the departure airport.                                    |
+| origin_airport         | VARCHAR   | Name of the departure airport.                                          |
+| origin_country         | VARCHAR   | Country of the departure airport.                                       |
+| destination_airport_id | INT       | Identifier of the arrival airport.                                      |
+| destination_airport    | VARCHAR   | Name of the arrival airport.                                            |
+| destination_country    | VARCHAR   | Country of the arrival airport.                                         |
+| departure_time         | DATETIME  | Scheduled flight departure time.                                        |
+| arrival_time           | DATETIME  | Scheduled flight arrival time.                                          |
+| aircraft_type          | VARCHAR   | Aircraft model used for the flight.                                     |
+| status                 | VARCHAR   | Operational status of the flight (Completed, Delayed, Cancelled).       |
+| flight_duration_hours  | DECIMAL   | Total flight duration in hours.                                         |
+| status_category        | VARCHAR   | Categorized flight status used for operational reporting.               |
+| flight_type            | VARCHAR   | Flight category based on duration (Short Haul, Medium Haul, Long Haul). |
+
+---
+
+# fact_route_performance
+
+**Purpose:** Provides aggregated route-level performance metrics used to evaluate route profitability, customer demand, and operational efficiency.
+
+| Column Name               | Data Type | Description                                                          |
+| ------------------------- | --------- | -------------------------------------------------------------------- |
+| origin_airport_id         | INT       | Identifier of the departure airport.                                 |
+| origin_airport            | VARCHAR   | Name of the departure airport.                                       |
+| origin_country            | VARCHAR   | Country of the departure airport.                                    |
+| destination_airport_id    | INT       | Identifier of the arrival airport.                                   |
+| destination_airport       | VARCHAR   | Name of the arrival airport.                                         |
+| destination_country       | VARCHAR   | Country of the arrival airport.                                      |
+| total_flights             | INT       | Total number of flights operated on the route.                       |
+| total_bookings            | INT       | Total number of bookings made for the route.                         |
+| total_revenue             | DECIMAL   | Total revenue generated from bookings on the route.                  |
+| avg_ticket_price          | DECIMAL   | Average ticket price for the route.                                  |
+| avg_flight_duration_hours | DECIMAL   | Average flight duration for the route in hours.                      |
+| route_type                | VARCHAR   | Route classification based on countries (Domestic or International). |
+
+---
+
+# Analytics Layer Summary
+
+| View Name              | Business Purpose                                                                               |
+| ---------------------- | ---------------------------------------------------------------------------------------------- |
+| dim_passengers         | Customer analytics, passenger profiling, loyalty segmentation, and booking behavior analysis.  |
+| dim_employees          | Workforce analytics, employee segmentation, and operational staffing insights.                 |
+| fact_booking           | Booking trends, customer purchasing behavior, loyalty analysis, and revenue contribution.      |
+| fact_flight            | Flight operations monitoring, route analysis, aircraft utilization, and performance reporting. |
+| fact_route_performance | Route profitability analysis, demand forecasting, and strategic route performance evaluation.  |
