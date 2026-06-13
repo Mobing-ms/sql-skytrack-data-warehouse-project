@@ -115,18 +115,6 @@ LEFT JOIN
     ON p.passenger_id = t.passenger_id;
 GO
 
-CREATE OR ALTER VIEW analytics.dim_airport
-AS
-SELECT
-    airport_id,
-    iata_code,
-    airport_name,
-    city,
-    country,
-    timezone
-FROM processing.mast_airports;
-GO
-
 CREATE OR ALTER VIEW analytics.fact_booking
 AS
 SELECT
