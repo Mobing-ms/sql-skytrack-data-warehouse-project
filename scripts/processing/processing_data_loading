@@ -32,7 +32,6 @@ Target Tables:
     processing.serv_tickets
 ===============================================================================
 */
-
 USE SkyTrack_DWH;
 GO
 
@@ -130,7 +129,8 @@ BEGIN
             role,
             base_airport_id,
             hire_date,
-            email
+            email,
+            years_of_service
         )
         SELECT
             employee_id,
@@ -139,7 +139,8 @@ BEGIN
             roles,
             'AP' + RIGHT('0000' + CAST(base_airport_id AS VARCHAR), 4),
             CAST(hire_date AS DATE),
-            LOWER(email)
+            LOWER(email),
+            CAST(DATEDIFF(YEAR, hire_date, GETDATE()) AS INT)
         FROM cte_employees
         WHERE rn = 1;
 
@@ -162,45 +163,65 @@ BEGIN
 
         TRUNCATE TABLE processing.mast_flights;
 
-        WITH cte_flights AS
-        (
-            SELECT *,
-                   ROW_NUMBER() OVER
-                   (
-                       PARTITION BY flight_id
-                       ORDER BY flight_id
-                   ) AS rn
-            FROM acquisition.mast_flights_raw
-        )
-        INSERT INTO processing.mast_flights
-        (
-            flight_id,
-            airline_code,
-            flight_no,
-            origin_airport_id,
-            destination_airport_id,
-            departure_time,
-            arrival_time,
-            aircraft_type,
-            status,
-            pilot_id,
-            co_pilot_id
-        )
-        SELECT
-            flight_id,
-            airline_code,
-            flight_no,
-            origin_airport_id,
-            destination_airport_id,
-            CAST(departure_time AS DATETIME2),
-            CAST(arrival_time AS DATETIME2),
-            aircraft_type,
-            status,
-            pilot_id,
-            co_pilot_id
-        FROM cte_flights
-        WHERE rn = 1;
+WITH cte_flights AS
+(
+    SELECT *,
+           ROW_NUMBER() OVER
+           (
+               PARTITION BY flight_id
+               ORDER BY flight_id
+           ) AS rn
+    FROM acquisition.mast_flights_raw
+)
+INSERT INTO processing.mast_flights
+(
+    flight_id,
+    airline_code,
+    flight_no,
+    origin_airport_id,
+    destination_airport_id,
+    departure_time,
+    arrival_time,
+    aircraft_type,
+    status,
+    pilot_id,
+    co_pilot_id,
+    travel_time_minutes,
+    travel_time_hours,
+    departure_date,
+    departure_year
+)
+SELECT
+    flight_id,
+    airline_code,
+    flight_no,
+    origin_airport_id,
+    destination_airport_id,
+    CAST(departure_time AS DATETIME2),
+    CAST(arrival_time AS DATETIME2),
+    aircraft_type,
+    status,
+    pilot_id,
+    co_pilot_id,
+    DATEDIFF
+    (
+        MINUTE,
+        CAST(departure_time AS DATETIME2),
+        CAST(arrival_time AS DATETIME2)
+    ) AS travel_time_minutes,
+     DATEDIFF
+    (
+        MINUTE,
+        CAST(departure_time AS DATETIME2),
+        CAST(arrival_time AS DATETIME2)
+    )/60.0 AS travel_time_hours,
+    CAST(departure_time AS DATE) AS departure_date,
+    YEAR(CAST(departure_time AS DATETIME2)) AS departure_year
+    
 
+
+FROM cte_flights
+WHERE rn = 1;
         SET @end_time = GETDATE();
 
         PRINT 'Completed: mast_flights';
@@ -231,28 +252,45 @@ BEGIN
                    ) AS rn
             FROM acquisition.serv_passengers_raw
         )
-        INSERT INTO processing.serv_passengers
-        (
-            passenger_id,
-            first_name,
-            last_name,
-            gender,
-            dob,
-            email,
-            phone,
-            nationality
-        )
-        SELECT
-            passenger_id,
-            TRIM(first_name),
-            TRIM(last_name),
-            gender,
-            CAST(dob AS DATE),
-            LOWER(email),
-            phone,
-            nationality
-        FROM cte_passengers
-        WHERE rn = 1;
+          INSERT INTO processing.serv_passengers
+    (
+        passenger_id,
+        first_name,
+        last_name,
+        gender,
+        dob,
+        email,
+        phone,
+        nationality,
+        age,
+        age_group
+    )
+    SELECT
+        passenger_id,
+        TRIM(first_name),
+        TRIM(last_name),
+        gender,
+        CAST(dob AS DATE),
+        LOWER(email),
+        phone,
+        nationality,
+
+        DATEDIFF(YEAR, CAST(dob AS DATE), GETDATE()) AS age,
+
+        CASE
+            WHEN DATEDIFF(YEAR, CAST(dob AS DATE), GETDATE()) < 18
+                THEN 'Child'
+            WHEN DATEDIFF(YEAR, CAST(dob AS DATE), GETDATE()) BETWEEN 18 AND 30
+                THEN 'Young Adult'
+            WHEN DATEDIFF(YEAR, CAST(dob AS DATE), GETDATE()) BETWEEN 31 AND 50
+                THEN 'Adult'
+            WHEN DATEDIFF(YEAR, CAST(dob AS DATE), GETDATE()) BETWEEN 51 AND 65
+                THEN 'Senior Adult'
+            ELSE 'Senior Citizen'
+        END AS age_group
+
+    FROM cte_passengers
+    WHERE rn = 1;
 
         SET @end_time = GETDATE();
 
@@ -339,5 +377,6 @@ BEGIN
 
     END CATCH
 END;
+GO
 GO
 END
